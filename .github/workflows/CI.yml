@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: 
+    - main
+    - server
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@main
+      - uses: actions/checkout@server
+
+      # Runs a single command using the runners shell
+      - name: Build docker
+        run: |
+           docker build Go-http-server/Dockerfile -t Go-http-server:1.0
+           docker tag server:1.0.0 tonyette/server:1.0.0
+           cat ~/password.txt | docker login --username Tonyette --password-stdin
+           docker push tonyette/server:1.0.0
+
+      
