@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http_server
+  namespace: mailhog
+spec:
+  selector:
+    matchLabels:
+      app: http_server
+  replicas: 2
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: http_server
+    spec:
+      containers:
+      - name: http_server
+        image: 
+        ports:
+        - containerPort: 3000
+      
