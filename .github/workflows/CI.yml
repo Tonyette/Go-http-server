@@ -8,6 +8,7 @@ on:
     branches: 
     - main
     - server
+    - CI
   pull_request:
     branches:
     - main
