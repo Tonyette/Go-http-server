@@ -29,6 +29,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: docker build
         run: |
+          cp ~/Go-http-server/Dockerfile .
           docker build Dockerfile -t server:1.0.0
           docker tag server:1.0.0 tonyette/server:1.0.0
           cat ~/password.txt | docker login --username Tonyette --password-stdin
