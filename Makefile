@@ -2,6 +2,7 @@ hello:
 	echo "building starts"
 
  ADDR=":3000"
+ BUILDPATH=/server
 
 build:
 	go build -o server/app server/
